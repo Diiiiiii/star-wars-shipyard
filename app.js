@@ -1,23 +1,31 @@
-/*
+//1. Riješiti template u startu jer ne moramo svaki put kompajalat iz sourcea. Jednom kad smo ga kompajlali u funkciju, možemo ga pozivati s različitim podacima i prikazivati
+//2. appElement možemo izvući na vrh da ga ne moramo uvijek selektirati
+const appElement = document.querySelector("#app");
+const source = document.querySelector("#starships-template").innerHTML;
+const template = Handlebars.compile(source);
+
+
 var endpoint = "https://swapi.dev/api/starships";
 
 fetch(endpoint)
-.then((response) => response.json())
-.then((json) => console.log(json))
-.catch((error) => console.error(error));
-*/
-//console.log(Handlebars);
+// Rješenje: uzeti popis rezultata iz responsa, staviti u starships value i ispisati html u appElement innerHtml
+    .then((response) => response.json())
+    .then((json) => {
+        const html = template({ starships: json.results});
 
-// izvor templata - možemo ga ovdje definirati ili u html-u izravno u <script>, pa ovdje selektiramo taj element
-// const source = "<h1>{{name}}</h1>";
-const source = document.querySelector("#hello-template").innerHTML;
+        appElement.innerHTML = html;
+    })
+    .catch((error) => console.error(error));
 
-//Moj handlepars template (šablona) je rezultat Handlparsovog compilenja(obrade) sourca iz iznad navedene linije
-const template = Handlebars.compile(source);
-// pretvorimo template u html pozivanjem njega kao funkcije, obavezno treba primiti podatke npr name: "Dijana"
-const html = template({name: "Dijana"});
-// Sad možemo napraviti različite html-ove s templatom
-const htmlIvan = template({name: "Ivan"});
-// stavljamo tekst(ne element u body)
-document.body.innerHTML += html;
-document.body.innerHTML += htmlIvan; 
+
+//pozivati s različitim podacima i prikazivati
+/* const html = template({ starships: [{ name: "Starship A"}, { name: "Starship B"}]});
+appElement.innerHTML = html; */
+
+
+/* Vježba: Handlebars
+Trajanje: 15min (20:25 - 20:40)
+---
+
+Završite zadatak tako da se u Handlebars template ispiše niz starshipa dobivenih u responseu na GET https://swapi.dev/api/starships request.
+ */

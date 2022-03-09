@@ -9,14 +9,23 @@
 </head>
 <body>
     <div id="app">
-        </div>
+        <!-- <div>
             <div>Ship A <button>Buy now</button></div>
             <div>Ship B <button>Buy now</button></div>
             <div>Ship C <button>Buy now</button></div>
-        </div>
+        </div> -->
     </div>
-    <script id="hello-template" type="text/x-handlebars-template">
-        <h1>{{name}}</h1>
+    <script id="starships-template" type="text/x-handlebars-template">
+        <!--<h1>{{name}}</h1> -->
+        <!--Iteracija u Handlebarsu - petlja, properti u this.name uzimamo iz responsa https://swapi.dev/api/starships-->
+        <div>
+            <!--starships je niz objekata koji imaju properti name properti na sebi-->
+            {{#each starships}}
+            <div>{{this.name}} <button>Buy now</button></div>
+            {{/each}}
+            <!-- <div>Ship B <button>Buy now</button></div>
+            <div>Ship C <button>Buy now</button></div> -->
+        </div>
     </script>
  <script src="app.js"></script>   
 </body>
