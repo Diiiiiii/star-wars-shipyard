@@ -1,3 +1,4 @@
+// Vježba demonstrira mapiranje rezultate u tamplate
 //1. Riješiti template u startu jer ne moramo svaki put kompajalat iz sourcea. Jednom kad smo ga kompajlali u funkciju, možemo ga pozivati s različitim podacima i prikazivati
 //2. appElement možemo izvući na vrh da ga ne moramo uvijek selektirati
 const appElement = document.querySelector("#app");
